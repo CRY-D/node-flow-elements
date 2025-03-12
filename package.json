@@ -1,0 +1,125 @@
+{
+  "name": "@node-flow-elements/nfe",
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*.js",
+    "./src/*": "./src/*.js",
+    "./types/react": "./types/react.d.ts",
+    "./type/vue": "./types/vue.d.ts"
+  },
+  "scripts": {
+    "build": "vite build",
+    "build:check": "tsc && vite build",
+    "build:lib": "vite build --config vite.config.lib.ts",
+    "deploy:demo": "netlify deploy -d dist",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@lit-labs/motion": "^1.0.7",
+    "@lit-labs/signals": "^0.1.1",
+    "@lit/context": "^1.1.3",
+    "clsx": "^2.1.1",
+    "lit": "^3.2.1",
+    "panzoom": "^9.4.3",
+    "signal-utils": "^0.21.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.25.9",
+    "@babel/plugin-syntax-decorators": "^7.25.9",
+    "@babel/plugin-syntax-typescript": "^7.25.9",
+    "@custom-elements-manifest/to-markdown": "^0.1.0",
+    "@eslint/js": "^9.11.1",
+    "@gracile-labs/jsx": "link:../../@gracile/gracile/packages/labs/jsx",
+    "@gracile/doc": "link:../../@gracile/website",
+    "@gracile/gracile": "link:../../@gracile/gracile/packages/gracile",
+    "@gracile/markdown": "link:../../@gracile/gracile/packages/addons/markdown",
+    "@gracile/markdown-preset-marked": "link:../../@gracile/gracile/packages/addons/markdown-preset-marked",
+    "@literals/rollup-plugin-html-css-minifier": "^3.0.1",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-strip": "^3.0.4",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@shikijs/transformers": "^1.26.1",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.0",
+    "@types/d3-selection": "^3.0.11",
+    "@types/d3-zoom": "^3.0.8",
+    "@types/hast": "^3.0.4",
+    "@types/react": "^19.0.4",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vtaits/react-signals": "^1.0.2",
+    "custom-element-react-wrappers": "^1.6.8",
+    "custom-element-vuejs-integration": "^1.3.3",
+    "d3-selection": "^3.0.0",
+    "d3-zoom": "^3.0.0",
+    "decorator-transforms": "^2.3.0",
+    "eslint": "^9.17.0",
+    "eslint-import-resolver-typescript": "^3.6.3",
+    "eslint-plugin-import-x": "^4.3.1",
+    "eslint-plugin-jsdoc": "^50.3.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-plugin-sort-class-members": "^1.21.0",
+    "eslint-plugin-unicorn": "^56.0.0",
+    "globals": "^15.10.0",
+    "hono": "^4.6.16",
+    "json-schema-to-ts": "^3.1.1",
+    "marked": "^15.0.6",
+    "marked-shiki": "^1.1.1",
+    "prettier": "^3.4.2",
+    "react": "^19",
+    "react-dom": "^19.0.0",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "sass": "^1.83.0",
+    "shiki": "^1.26.1",
+    "stylelint": "^16.10.0",
+    "stylelint-config-recess-order": "^5.1.1",
+    "stylelint-config-standard": "^36.0.1",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-order": "^6.0.4",
+    "svelte": "^5.17.3",
+    "typedoc": "^0.27.6",
+    "typedoc-plugin-markdown": "^4.4.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.8.0",
+    "vite": "^6.0.6",
+    "vite-plugin-dts": "^4.4.0",
+    "vite-plugin-inspect": "^0.10.6",
+    "vite-plugin-static-copy": "^2.2.0",
+    "vue": "^3.5.13",
+    "wc-dox": "^1.2.0"
+  },
+  "peerDependencies": {
+    "@jsfe/shoelace": "link:../../@jsfe/jsfe/packages/shoelace",
+    "@shoelace-style/shoelace": "^2.19.1",
+    "@types/json-schema": "^7.0.15",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  },
+  "peerDependenciesMeta": {
+    "@jsfe/shoelace": {
+      "optional": true
+    },
+    "@shoelace-style/shoelace": {
+      "optional": true
+    },
+    "@types/json-schema": {
+      "optional": true
+    },
+    "ajv": {
+      "optional": true
+    },
+    "ajv-formats": {
+      "optional": true
+    }
+  },
+  "customElements": "./dist/custom-elements.json",
+  "overrides": {
+    "lit": "^3.2.1",
+    "@shoelace-style/shoelace": "^2.19.1",
+    "signal-polyfill": "^0.2.1"
+  }
+}
