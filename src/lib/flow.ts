@@ -154,7 +154,7 @@ export class Flow<
     else this.panzoom?.zoomAbs(x, y, 1);
   }
 
-  public resetViewport(smooth: boolean): void {
+  public resetViewport(smooth: boolean = false): void {
     this.resetOffset(smooth);
     this.resetScale(smooth);
     // HACK: Doing it twice…
