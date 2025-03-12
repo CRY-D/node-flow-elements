@@ -43,16 +43,14 @@ export const babelConfig = babel({
 });
 
 export const staticCopy = (mode: string) =>
-  mode === 'development'
-    ? viteStaticCopy({
-        targets: [
-          {
-            src: 'node_modules/@shoelace-style/shoelace/dist/assets/icons/*.svg',
-            dest: 'assets/icons',
-          },
-        ],
-      })
-    : null;
+  viteStaticCopy({
+    targets: [
+      {
+        src: 'node_modules/@shoelace-style/shoelace/dist/assets/icons/*.svg',
+        dest: 'assets/icons',
+      },
+    ],
+  });
 
 export const gracileJsxConfig = gracileJsx({
   cemPlugin: {

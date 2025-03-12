@@ -9,10 +9,18 @@ _NFE_ is similar to the "React/Svelte/Vue flow" alike open-source libraries, wit
 2. Your views can be reactive via **standard events** (not recommended), framework specific **hooks** (based on events) or any standard **signal** proposal implementation you can find.
 3. Any custom nodes can be injected in standard **slots**, being Lit/vanilla custom elements, or components made with **React**, **Vue**, **Solid**, etc.
 
+---
+
+<div class="git-only">
+
+[📚 Documentation Website](https://node-flow-elements.netlify.app/)
+
+</div>
+
 ## Demo
 
 <demo-nf-wa style="display: block; height: 70dvh; width: 100%;">
-<img src="">
+<img width="1416" alt="Xnapper-2025-03-12-16 42 20" src="https://github.com/user-attachments/assets/aed258f5-d2d7-4e4e-ad9a-6a70b47f68dd" />
 </demo-nf-wa>
 
 ---
@@ -59,9 +67,11 @@ Both your custom template and the _NFE_ tree are actionable at will, for **local
 
 Of course, _NFE_ is not as solidly integrated with your vendor UI framework as a dedicated solution could be, but that could change over time, if the JS signal proposal get more widespread.
 
-<div class="git-only">
+---
 
-**Table of Contents**
+<details class="git-only">
+
+<summary align="center"><strong>Table of Contents</strong></summary>
 
 - [Demo](#demo)
 - [Why?](#why)
@@ -106,7 +116,9 @@ Of course, _NFE_ is not as solidly integrated with your vendor UI framework as a
 - [Type-safety](#type-safety)
 - [Server rendering](#server-rendering)
 
-</div>
+</details>
+
+---
 
 ## Installation
 
