@@ -9,6 +9,8 @@ _NFE_ is similar to the "React/Svelte/Vue flow" alike open-source libraries, wit
 2. Your views can be reactive via **standard events** (not recommended), framework specific **hooks** (based on events) or any standard **signal** proposal implementation you can find.
 3. Any custom nodes can be injected in standard **slots**, being Lit/vanilla custom elements, or components made with **React**, **Vue**, **Solid**, etc.
 
+With a standard-minded implementation, plus a slot-injection centric design, _NFE_ aims to be versatile and interoperable, while giving user freedom to build with their pre-existing UI tool set.
+
 ---
 
 <div class="git-only">
@@ -30,6 +32,62 @@ _NFE_ is similar to the "React/Svelte/Vue flow" alike open-source libraries, wit
 > However, don't expect the high level of polish and features of well-known libraries that have been battle-tested for years in the React/Vue/Svelte ecosystems.  
 > _NFE_ is a specialized component set with a fair amount of opinions. Its API surface is meant to be kept small and manageable. It's already easily extendable, but more of the core features should be configurable.  
 > Feel free to give some feedback in the GitHub discussions :).
+
+---
+
+<details class="git-only">
+
+<summary align="center"><strong>Table of Contents</strong></summary>
+
+- [Node Flow Elements](#node-flow-elements)
+  - [Demo](#demo)
+  - [Why?](#why)
+  - [How?](#how)
+  - [Installation](#installation)
+    - [Cherry-picking](#cherry-picking)
+  - [Quick Start](#quick-start)
+  - [Base Components](#base-components)
+    - [Flow](#flow)
+    - [Node](#node)
+    - [Port](#port)
+    - [Handle](#handle)
+    - [Links](#links)
+    - [Background](#background)
+  - [Themes](#themes)
+    - [Default](#default)
+    - [Web awesome](#web-awesome)
+      - [Installation](#installation-1)
+      - [Base components](#base-components-1)
+        - [Node](#node-1)
+        - [Port](#port-1)
+      - [Extra components](#extra-components)
+        - [Minimap](#minimap)
+        - [Navigation](#navigation)
+        - [Center](#center)
+      - [Demo nodes](#demo-nodes)
+  - [Custom nodes](#custom-nodes)
+  - [Imperative API](#imperative-api)
+  - [Signals](#signals)
+  - [Events](#events)
+  - [Serialization](#serialization)
+  - [With UI Libraries](#with-ui-libraries)
+    - [React](#react)
+      - [Typings](#typings)
+      - [Signals](#signals-1)
+      - [Hooks](#hooks)
+        - [`useFlow`](#useflow)
+        - [`useNode`](#usenode)
+        - [`usePort`](#useport)
+    - [Lit](#lit)
+      - [Typings](#typings-1)
+    - [Vue](#vue)
+      - [Typings](#typings-2)
+  - [Type-safety](#type-safety)
+  - [Server rendering](#server-rendering)
+
+</details>
+
+---
 
 ## Why?
 
@@ -66,61 +124,6 @@ of positioning, pan and zooming, connecting ports…
 Both your custom template and the _NFE_ tree are actionable at will, for **local** or **global** state, **with** or **without** side effects with flow/nodes/ports states.
 
 Of course, _NFE_ is not as solidly integrated with your vendor UI framework as a dedicated solution could be, but that could change over time, if the JS signal proposal gets more widespread.
-
----
-
-<details class="git-only">
-
-<summary align="center"><strong>Table of Contents</strong></summary>
-
-- [Node Flow Elements](#node-flow-elements)
-  - [Demo](#demo)
-  - [Why?](#why)
-  - [How?](#how)
-  - [Installation](#installation)
-    - [Cherry-picking](#cherry-picking)
-  - [Quick Start](#quick-start)
-  - [Base Components](#base-components)
-    - [Flow](#flow)
-    - [Node](#node)
-    - [Port](#port)
-    - [Handle](#handle)
-    - [Links](#links)
-    - [Background](#background)
-  - [Themes](#themes)
-    - [Default](#default)
-    - [Web awesome](#web-awesome)
-      - [Installation](#installation-1)
-      - [Base components](#base-components-1)
-        - [Node](#node-1)
-        - [Port](#port-1)
-      - [Extra components](#extra-components)
-        - [Minimap](#minimap)
-        - [Navigation](#navigation)
-        - [Center](#center)
-      - [Demo nodes](#demo-nodes)
-  - [Custom nodes](#custom-nodes)
-  - [Imperative API](#imperative-api)
-  - [Events](#events)
-  - [Serialization](#serialization)
-  - [With UI Libraries](#with-ui-libraries)
-    - [React](#react)
-      - [Typings](#typings)
-      - [Signals](#signals)
-      - [Hooks](#hooks)
-        - [`useFlow`](#useflow)
-        - [`useNode`](#usenode)
-        - [`usePort`](#useport)
-    - [Lit](#lit)
-      - [Typings](#typings-1)
-    - [Vue](#vue)
-      - [Typings](#typings-2)
-  - [Type-safety](#type-safety)
-  - [Server rendering](#server-rendering)
-
-</details>
-
----
 
 ## Installation
 
@@ -776,6 +779,12 @@ pixi2.outlets.canvas.connectTo(pixiDisplay.inlets.canvasAfter);
 As always, it's all type-safe, so the Node `type`, for example, is sourcing all custom nodes like `PixiNode` etc. from where you defined them in the flow instance constructor parameters.  
 When using `addNode`, you'll get the correct node type in return. For example a custom `NoteNode` has its specific methods (`updateTextContent`…).
 
+## Signals
+
+With the NFE API, **original signals** (not the handy getters), are prefixed with a `$`, so it's accessible for third-party libraries.
+
+For example `flow.nodes` return the nodes, directly, whereas `flow.$nodes` will return a `Signal` instance (with the `.get` and `.set` methods).
+
 ## Events
 
 The flow store has a `listen` method that. Its callback takes a `detail` as a parameter with the event `type`, which can be `"Flow" | "Node" | "Port"`.
@@ -814,6 +823,8 @@ Possibly, using _YJS_ or other **CRDT based** solution could be explored, especi
 ```tsx
 import { useFlow } from '@node-flow-elements/nfe/adapters/react';
 
+// ...
+
 function MyFlow() {
   useFlow(flow);
 
@@ -851,7 +862,34 @@ type Nfe = import('@node-flow-elements/nfe/types/react').NodeFlowElements;
 
 #### Signals
 
-TBD…
+_NFE_ has been successfully tested with [dai-shi/use-signals](https://github.com/dai-shi/use-signals) and [@vtaits/react-signals](https://github.com/vtaits/react-signals).
+
+Here, with `dai-shi/use-signals`:
+
+```tsx
+import { useSignal } from 'use-signals';
+
+// ...
+
+function MyFlow() {
+  // Remember, original signals are $-prefixed.
+  const nodes = useSignal(flow.$nodes);
+
+  return (
+    <div style={{ width: '50rem', height: '50rem' }}>
+      <nf-flow flow={flow}>
+        {nodes.map((node) => (
+          <div key={node.id} slot={node.slotName}>
+            <nf-handle>{/* ... */}</nf-handle>
+
+            <nf-port port={node.ports.input}>{/* ... */}</nf-port>
+          </div>
+        ))}
+      </nf-flow>
+    </div>
+  );
+}
+```
 
 #### Hooks
 

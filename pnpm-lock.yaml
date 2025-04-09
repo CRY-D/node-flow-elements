@@ -28,7 +28,7 @@ importers:
         version: 7.0.15
       ajv:
         specifier: ^8.17.1
-        version: 8.17.1
+        version: 8.13.0
       ajv-formats:
         specifier: ^3.0.1
         version: 3.0.1(ajv@8.17.1)
@@ -219,6 +219,9 @@ importers:
       typescript-eslint:
         specifier: ^8.8.0
         version: 8.19.1(eslint@9.17.0)(typescript@5.7.3)
+      use-signals:
+        specifier: ^0.1.1
+        version: 0.1.1(react@19.0.0)
       vite:
         specifier: ^6.0.6
         version: 6.0.7(sass@1.83.1)(terser@5.37.0)(yaml@2.7.0)
@@ -1478,6 +1481,11 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  create-react-signals@0.8.0:
+    resolution: {integrity: sha512-BMenSpH81lr/eRQp5ABPIfmBL1wqcIfM3iPnbPROtHn79KwtR9KVnQnFN/skTN/YLJPXJmXDM/R1CGhAWnEg1w==}
+    peerDependencies:
+      react: '>=18.0.0'
 
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
@@ -2782,6 +2790,9 @@ packages:
     resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
     engines: {node: '>=14'}
 
+  signal-polyfill@0.1.2:
+    resolution: {integrity: sha512-HT9d+L9NMiTzMxb/tU2Baym6129ROyRETSjvchvSkQa7wN0+SrG/IUlsaBLqKn2c+4mlze6CgQBEvgBjxOpiaQ==}
+
   signal-polyfill@0.2.1:
     resolution: {integrity: sha512-HtchWosT4UT1i6yIMmxjg7gqkDT9lXvQtJRGVppi2TDwVjgs8cS+7ATVFqBvgJGThludjxrxJFOvmzzGSAc8OA==}
 
@@ -3096,6 +3107,11 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  use-signals@0.1.1:
+    resolution: {integrity: sha512-TBoaBFGhUnydrwZ9TYlZmAEKyoPB8fN5ykjvdpe6lWjjGz3y11uSq1WdT1naetjgEsE2s4dL7vCB1JHYnK6EFg==}
+    peerDependencies:
+      react: '>=18.0.0'
 
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
@@ -4520,6 +4536,10 @@ snapshots:
       parse-json: 5.2.0
     optionalDependencies:
       typescript: 5.7.3
+
+  create-react-signals@0.8.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   cross-spawn@7.0.6:
     dependencies:
@@ -6027,6 +6047,8 @@ snapshots:
 
   signal-exit@4.1.0: {}
 
+  signal-polyfill@0.1.2: {}
+
   signal-polyfill@0.2.1: {}
 
   signal-utils@0.21.1(signal-polyfill@0.2.1):
@@ -6394,6 +6416,12 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  use-signals@0.1.1(react@19.0.0):
+    dependencies:
+      create-react-signals: 0.8.0(react@19.0.0)
+      react: 19.0.0
+      signal-polyfill: 0.1.2
 
   util-deprecate@1.0.2: {}
 
