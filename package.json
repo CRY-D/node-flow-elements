@@ -13,7 +13,7 @@
     "build": "vite build",
     "build:check": "tsc && vite build",
     "build:lib": "vite build --config vite.config.lib.ts",
-    "deploy:demo": "netlify deploy -d dist",
+    "deploy:demo": "netlify deploy -d dist-site",
     "dev": "vite",
     "preview": "vite preview"
   },

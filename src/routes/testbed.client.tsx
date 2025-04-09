@@ -1,1 +1,1 @@
-import '../features/demo-1.jsx';
+import '../features/demo-nf-wa.jsx';

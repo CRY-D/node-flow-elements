@@ -11,7 +11,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 import * as readme from '../../README.md';
 
-import '../features/demo-1.jsx';
+import '../features/demo-nf-wa.jsx';
 
 type Syntax = 'react' | 'lit' | 'lit-jsx';
 const currentSyntaxKey = 'nfe:current-syntax';
@@ -19,7 +19,23 @@ const mode = signal<Syntax>(
   (localStorage.getItem(currentSyntaxKey) as Syntax) || 'lit-jsx',
 );
 
-@customElement('demo-1')
+const blocks = await Promise.all(
+  readme.codeFiles.map(
+    async (file) => ({
+      m: await file.module(),
+      path: file.path /* name: code.meta.at(0) */,
+    }),
+    // file.lang === 'TSX'
+    // ?
+    // : null,
+  ),
+);
+
+console.log({
+  currentSyntax: localStorage.getItem('nfe:current-syntax'),
+});
+
+@customElement('code-runner')
 export class Demo1 extends SignalWatcher(LitElement) {
   static styles = [
     css`
@@ -75,6 +91,10 @@ export class Demo1 extends SignalWatcher(LitElement) {
   @property() accessor import: string | null = null;
 
   render() {
+    const imported = blocks
+      .find((block) => block.path === this.import)
+      ?.m.App();
+
     return (
       <div class="wrapper">
         <div class="code">
@@ -120,28 +140,13 @@ export class Demo1 extends SignalWatcher(LitElement) {
           </sl-tab-group>
         </div>
 
-        <div class="preview">
-          {/* FIXME: Typings upstream */}
-          {blocks.find((block) => block.path === this.import)?.m.App() ||
-            'Missing block'}
-        </div>
+        {imported ? (
+          <div class="preview">
+            {/* FIXME: Typings upstream */}
+            {imported}
+          </div>
+        ) : null}
       </div>
     );
   }
 }
-
-const blocks = await Promise.all(
-  readme.codeFiles.map(
-    async (file) => ({
-      m: await file.module(),
-      path: file.path /* name: code.meta.at(0) */,
-    }),
-    // file.lang === 'TSX'
-    // ?
-    // : null,
-  ),
-);
-
-console.log({
-  currentSyntax: localStorage.getItem('nfe:current-syntax'),
-});

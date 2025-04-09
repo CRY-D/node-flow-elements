@@ -27,28 +27,28 @@ _NFE_ is similar to the "React/Svelte/Vue flow" alike open-source libraries, wit
 
 > [!CAUTION]  
 > This proof-of-concept, after a while, _could_ be stabilized for production.  
-> However, don't expect the high level of polish and features of well-known libraries that have been battle-tested for years in the React/Vue/Svelte… land.  
-> _NFE_ is a specialized component set with a fair amount of opinions. Its API surface is meant to be kept small and manageable for me. It's already easily extendable, but more of the core features should be configurable.  
+> However, don't expect the high level of polish and features of well-known libraries that have been battle-tested for years in the React/Vue/Svelte ecosystems.  
+> _NFE_ is a specialized component set with a fair amount of opinions. Its API surface is meant to be kept small and manageable. It's already easily extendable, but more of the core features should be configurable.  
 > Feel free to give some feedback in the GitHub discussions :).
 
 ## Why?
 
-Now that Web Components capabilities are very well-supported in major browsers and frontend frameworks, like **React 19**, we can leverage them to act as an interoperable _flow charts_ toolkit. On key piece can make this ultimately interoperable: the TC39 standard proposal for a **Signal primitive** for JavaScript.
+Now that Web Components capabilities are very well-supported in major browsers and frontend frameworks like **React 19**, we can leverage them to act as an interoperable _flow charts_ toolkit. One key piece can make this ultimately interoperable: the TC39 standard proposal for a **Signal primitive** for JavaScript.
 
-As any standard proposal process, building stuff is the best way to explore the edges, as well as raising awareness of newfound capabilities.
+As with any standard proposal process, building actual stuff is the best way to explore the edges, as well as raising awareness of newfound capabilities.
 
-Keep in mind this project is an exploration to prove that we can aim toward a bit more standardized front-end world, at least for the _edges_ of each universe, without necessarily emptying their core (in this case, reactivity). **Re-using complex components** across front-end stacks definitely has some appeal that out-weight the trade-off.
+Keep in mind this project is an exploration to prove that we can aim toward a bit more standardized front-end world, at least for the _edges_ of each universe, without necessarily emptying their core (in this case, reactivity). **Re-using complex components** across front-end stacks definitely has some appeal that outweighs the trade-off.
 
-<!-- Flow graphs, with their "Flow/Node/Port/Edges" concepts embrace natu -->
+<!-- Flow graphs, with their "Flow/Node/Port/Edges" concepts embrace natural -->
 
 ## How?
 
-At core, a flow is a signal-backed reactive store, a class instance which is the brain for your application state and actions.
+At its core, a flow is a signal-backed reactive store, a class instance which is the brain for your application state and actions.
 
 You can **interact with the flow** via a **declarative configuration** (often at initialization)
 or via an **imperative API**, for maximum interoperability with your parent application.
 
-What make NFE special is its ability to "_project_" any HTML snippets into dedicated standard slots. Those slots are dynamically generated, derived from the flow instance state:
+What makes NFE special is its ability to "_project_" any HTML snippets into dedicated standard slots. Those slots are dynamically generated, derived from the flow instance state:
 
 ```html
 <nf-node class="node" style="--dx:261px;--dy:-167px;z-index:0;">
@@ -59,13 +59,13 @@ What make NFE special is its ability to "_project_" any HTML snippets into dedic
 ```
 
 <small>Here, `node_num_1` is just the name you gave for a particular node, with its seed setting.
-BTW, naming nodes are optional, they get an UUID as a fallback.</small>
+BTW, naming nodes is optional, they get a UUID as a fallback.</small>
 
 Once the node list **is bound to your rendering method** (React, Lit, Vanilla…), _NFE_ takes care
 of positioning, pan and zooming, connecting ports…
 Both your custom template and the _NFE_ tree are actionable at will, for **local** or **global** state, **with** or **without** side effects with flow/nodes/ports states.
 
-Of course, _NFE_ is not as solidly integrated with your vendor UI framework as a dedicated solution could be, but that could change over time, if the JS signal proposal get more widespread.
+Of course, _NFE_ is not as solidly integrated with your vendor UI framework as a dedicated solution could be, but that could change over time, if the JS signal proposal gets more widespread.
 
 ---
 
@@ -73,48 +73,50 @@ Of course, _NFE_ is not as solidly integrated with your vendor UI framework as a
 
 <summary align="center"><strong>Table of Contents</strong></summary>
 
-- [Demo](#demo)
-- [Why?](#why)
-- [How?](#how)
-- [Installation](#installation)
-  - [Cherry-picking](#cherry-picking)
-- [Quick Start](#quick-start)
-- [Base Components](#base-components)
-  - [Flow](#flow)
-  - [Node](#node)
-  - [Port](#port)
-  - [Handle](#handle)
-  - [Links](#links)
-  - [Background](#background)
-- [Themes](#themes)
-  - [Default](#default)
-  - [Web awesome](#web-awesome)
-    - [Installation](#installation-1)
-    - [Base components](#base-components-1)
-      - [Node](#node-1)
-      - [Port](#port-1)
-    - [Extra components](#extra-components)
-      - [Minimap](#minimap)
-      - [Navigation](#navigation)
-      - [Center](#center)
-    - [Demo nodes](#demo-nodes)
-- [Custom nodes](#custom-nodes)
-- [Events](#events)
-- [Serialization](#serialization)
-- [With UI Libraries](#with-ui-libraries)
-  - [React](#react)
-    - [Typings](#typings)
-    - [Signals](#signals)
-    - [Hooks](#hooks)
-      - [`useFlow`](#useflow)
-      - [`useNode`](#usenode)
-      - [`usePort`](#useport)
-  - [Lit](#lit)
-    - [Typings](#typings-1)
-  - [Vue](#vue)
-    - [Typings](#typings-2)
-- [Type-safety](#type-safety)
-- [Server rendering](#server-rendering)
+- [Node Flow Elements](#node-flow-elements)
+  - [Demo](#demo)
+  - [Why?](#why)
+  - [How?](#how)
+  - [Installation](#installation)
+    - [Cherry-picking](#cherry-picking)
+  - [Quick Start](#quick-start)
+  - [Base Components](#base-components)
+    - [Flow](#flow)
+    - [Node](#node)
+    - [Port](#port)
+    - [Handle](#handle)
+    - [Links](#links)
+    - [Background](#background)
+  - [Themes](#themes)
+    - [Default](#default)
+    - [Web awesome](#web-awesome)
+      - [Installation](#installation-1)
+      - [Base components](#base-components-1)
+        - [Node](#node-1)
+        - [Port](#port-1)
+      - [Extra components](#extra-components)
+        - [Minimap](#minimap)
+        - [Navigation](#navigation)
+        - [Center](#center)
+      - [Demo nodes](#demo-nodes)
+  - [Custom nodes](#custom-nodes)
+  - [Imperative API](#imperative-api)
+  - [Events](#events)
+  - [Serialization](#serialization)
+  - [With UI Libraries](#with-ui-libraries)
+    - [React](#react)
+      - [Typings](#typings)
+      - [Signals](#signals)
+      - [Hooks](#hooks)
+        - [`useFlow`](#useflow)
+        - [`useNode`](#usenode)
+        - [`usePort`](#useport)
+    - [Lit](#lit)
+      - [Typings](#typings-1)
+    - [Vue](#vue)
+      - [Typings](#typings-2)
+  - [Type-safety](#type-safety)
+  - [Server rendering](#server-rendering)
 
 </details>
 
@@ -183,6 +185,8 @@ thanks to Web Components built-in capabilities.
 
 However, these few bare styles are still [easily customizable](#default) via **CSS properties** and **shadow parts**.
 
+> [!WARNING] Please note that style customization is very shallow right now. Before making the API deeper, two kinds of APIs are experimented: via **CSS properties** or via the general JS API options. It's not sure which one will stick yet (maybe both?).
+
 ---
 
 If you want to use the [Web Awesome (formerly Shoelace) theme](#web-awesome) with its custom node set, you'll need some optional peer dependencies too.
@@ -200,7 +204,7 @@ If you want to use the [Web Awesome (formerly Shoelace) theme](#web-awesome) wit
 
 Let's build a flow from scratch:
 
-<demo-1 import="/src/flow/1/app-lit-jsx.tsx">
+<code-runner import="/src/flow/1/app-lit-jsx.tsx">
 
 **React**
 
@@ -464,7 +468,7 @@ const Socket = () =>
 
 </div>
 
-</demo-1>
+</code-runner>
 
 Here is a breakdown of this snippet:
 
@@ -484,11 +488,19 @@ We are using the default `Node` class here, which provides the bare minimum, lik
 
 ### Flow
 
+Firstly, create a new flow **store**:
+
 ```ts
 const flow = new Flow(/* options… */);
 ```
 
-JSX
+You can now use it right in your templates, for the `flow` property of the `nf-flow` HTML element:
+
+<code-runner>
+
+<div slot="react">
+
+**React**
 
 ```tsx
 const Template = () => (
@@ -502,7 +514,29 @@ const Template = () => (
 );
 ```
 
-Lit-HTML
+</div>
+
+<div slot="lit-jsx">
+
+**Lit JSX**
+
+```tsx
+const Template = () => (
+  <main>
+    <nf-flow prop:flow={flow}>
+      {/*
+        ...
+       */}
+    </nf-flow>
+  </main>
+);
+```
+
+</div>
+
+<div slot="lit">
+
+**Lit**
 
 ```ts
 const Template = () => html`
@@ -516,19 +550,15 @@ const Template = () => html`
 `;
 ```
 
-Lit-JSX
+</div>
 
-```tsx
-const Template = () => (
-  <main>
-    <nf-flow prop:flow={flow}>
-      {/*
-        ...
-       */}
-    </nf-flow>
-  </main>
-);
-```
+</code-runner>
+
+`nf-flow` has slots: `background`/`foreground`, interactive or not.
+
+These slots are used to place your projected HTML in the correct layer. For example, you'll want a mini-map in the foreground, without panning and zooming its UI alongside the canvas.  
+It's up to you to choose the correct layer for your custom widgets, depending on their desired behavior.
+Thankfully, **slots are typed** with the elements provided with the library and its extras.
 
 ### Node
 
@@ -579,7 +609,7 @@ See the [full API reference](/api/) for every possible CSS properties.
 > [!NOTE]  
 > Web Awesome is Shoelace 3.0.  
 > But as Web Awesome is just around the corner, we're using the Shoelace package while using the new name already.  
-> This is to avoid near future refactoring.
+> This is to avoid near-future refactoring.
 
 #### Installation
 
@@ -622,6 +652,43 @@ const Template = () => (
 ```
 
 All of this CSS will not interfere with the rest of your HTML document, as it's only properties and element shadow parts (with a few classes for WebAwesome), so it's safe to put this class in upper level, for example if you want to style multiple flows, or you are using WebAwesome in other places than _NFE_ flows.
+
+A contrived React example, using the Web Awesome demo nodes provided with the library:
+
+```tsx
+import { Flow } from '@node-flow-elements/nfe';
+import { kitchenSink } from '@node-flow-elements/nfe/themes/webawesome/demo-nodes/index';
+
+export const flow = new Flow(kitchenSink);
+
+export function App() {
+  return (
+    <div style={{ height: '100%', width: '100%' }}>
+      <nf-flow flow={flow} className="nf-webawesome">
+        <nf-background slot="background" />
+        <nf-wa-center slot="background-interactive" />
+
+        {/* With the WA demo, Nodes are already rendered internally!
+            No need to iterate their templates. 
+            But you might want to hook up your custom React nodes,
+            after experimenting.
+            The Lit Renderer is used as a bridge for rendering `html` template literals.
+          */}
+        {flow.nodes.map((node) => (
+          <lit-renderer slot={node.slotName} template={node.Template()} />
+        ))}
+
+        <nf-links slot="foreground-interactive" />
+
+        {/* Remember, slots are type-safe */}
+        <nf-wa-inventory slot="foreground" />
+        <nf-wa-minimap slot="foreground" />
+        <nf-wa-navigation slot="foreground" />
+      </nf-flow>
+    </div>
+  );
+}
+```
 
 #### Base components
 
@@ -674,13 +741,71 @@ export class NumberNode extends Node {
 }
 ```
 
+## Imperative API
+
+When you are initiating a new flow, you are setting the initial Nodes configuration. Afterward you can extract a serializable version of the flow state, or the opposite, ingest a JS object literal (from your JSON backend).
+
+But what if you want to control the graph state in a procedural, fine-grained manner?
+
+This is where you want to use the imperative API:
+
+```ts
+const pixi = flow.addNode({ type: 'PixiNode', x: -450, y: -540 });
+const pixi2 = flow.addNode({
+  type: 'PixiNode',
+  x: -490,
+  y: 142,
+  customDisplayName: 'Pixi 2',
+  // ports: ...
+});
+const pixiDisplay = flow.addNode({
+  type: 'CanvasComparerNode',
+  x: 149,
+  y: -162,
+});
+
+const stickyNote1 = flow.addNode({ type: 'NoteNode', x: 189, y: -430 });
+stickyNote1.updateTextContent(
+  '👻 Click on the Pixi nodes canvases to draw shapes, then compare!',
+);
+
+pixi.outlets.canvas.connectTo(pixiDisplay.inlets.canvasBefore);
+pixi2.outlets.canvas.connectTo(pixiDisplay.inlets.canvasAfter);
+```
+
+As always, it's all type-safe, so the Node `type`, for example, is sourcing all custom nodes like `PixiNode` etc. from where you defined them in the flow instance constructor parameters.  
+When using `addNode`, you'll get the correct node type in return. For example a custom `NoteNode` has its specific methods (`updateTextContent`…).
+
 ## Events
 
-TBD…
+The flow store has a `listen` method that. Its callback takes a `detail` as a parameter with the event `type`, which can be `"Flow" | "Node" | "Port"`.
+
+```ts
+const aborter = flow.listen((detail) => {
+  //  "Flow" | "Node" | "Port"
+  if (detail.type === 'Node' && detail.instance === node) forceUpdate();
+});
+
+// Use the aborter later when needed…
+aborter.abort();
+```
+
+It can be used to wrap your own hooks for your UI framework, although **signals are preferred**.
+
+> [!TIP]  
+> See the source code for the React Hooks adapter to see a very basic implementation.
+
+Events are way less granular (3 levels), if your flow is complicated, it might affect rendering performance. For general use cases, use them as a last resort, _or_ thoughtfully, like for syncing via WebSocket, Broadcast Channel, etc. For those use cases, having "catch-all", gross hooks, is simpler when we want to serialize everything through a tunnel and let the receiver do the triage. Think collaborative applications.
 
 ## Serialization
 
-TBD…
+Most _NFE_ class instances (Flow/Node/Port) have a `fromJSON` and a `toJSON` method for both ingestion and latter use record for the current flow internal state.
+
+These methods are called recursively, so if you call `flow.toJSON`, you get a full, serialized JSON tree that can later be ingested with `flow.fromJSON`.
+
+That makes writing to your preferred storage backend easy (IndexedDB based libraries, to a remote server…)
+
+Possibly, using _YJS_ or other **CRDT based** solution could be explored, especially if it's well married to a signal-based approach for our flow states.
 
 ## With UI Libraries
 
@@ -725,6 +850,8 @@ type Nfe = import('@node-flow-elements/nfe/types/react').NodeFlowElements;
 ```
 
 #### Signals
+
+TBD…
 
 #### Hooks
 
@@ -810,8 +937,11 @@ Note that it's not much work to make Custom HTML elements typings to work with a
 
 ## Server rendering
 
-For now, it's not supported. But it is planned to pre-render as many things as possible via Lit SSR.  
-Your nodes and others custom components in slots are still rendered with your UI framework, not by Lit, so the static marker is already there. If you have content in it (e.g. to cater for SEO), that will be present in the initial static markup. You will need to add a bit of styling, before the Custom HTML Element is connected to the document.
+For now, it's not fully supported. It is planned to pre-render as many things as possible via Lit SSR.
+
+<small>This docs website, built with Gracile (Vite+Lit SSR), is a dedicated testbed for testing server pre-rendering for NFE.</small>
+
+Your nodes and other custom components in slots are still rendered with your UI framework, not by Lit, so the static marker is already there. If you have content in it (e.g. to cater for SEO), that will be present in the initial static markup. You will need to add a bit of styling, before the Custom HTML Element is connected to the document, to smooth the appearance.
 
 ---
 
