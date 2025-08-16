@@ -7,7 +7,6 @@ import { LitElement, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import type { SlCard, SlInput } from '@shoelace-style/shoelace';
 import { SignalWatcher } from '@lit-labs/signals';
-import { For } from '@gracile-labs/jsx/components/for';
 
 import type { Port } from '../../port.js';
 
@@ -308,28 +307,24 @@ export class NfWaNodeElement extends SignalWatcher(LitElement) {
     type: 'input' | 'output';
   }): JSX.LitTemplate => (
     <div class:list={['port-wrapper', type]}>
-      <For each={ports} key={(port) => port.id}>
-        {(port) =>
-          port.metadata.hidden ? null : (
-            <div class="handle">
-              {type === 'output' ? (
-                <this.Label port={port} type={type} />
-              ) : null}
+      {ports.map((port) =>
+        port.metadata.hidden ? null : (
+          <div class="handle">
+            {type === 'output' ? <this.Label port={port} type={type} /> : null}
 
-              <div
-                class:list={[
-                  'port',
-                  ports.at(0)?.direction === 'in' ? 'inlet' : 'outlet',
-                ]}
-              >
-                <nf-wa-port prop:port={port} />
-              </div>
-
-              {type === 'input' ? <this.Label port={port} type={type} /> : null}
+            <div
+              class:list={[
+                'port',
+                ports.at(0)?.direction === 'in' ? 'inlet' : 'outlet',
+              ]}
+            >
+              <nf-wa-port prop:port={port} />
             </div>
-          )
-        }
-      </For>
+
+            {type === 'input' ? <this.Label port={port} type={type} /> : null}
+          </div>
+        ),
+      )}
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import babelPluginProposalDecorators from '@babel/plugin-proposal-decorators';
 // import babelPluginSyntaxDecorators from '@babel/plugin-syntax-decorators';
 import babelPluginSyntaxTypescript from '@babel/plugin-syntax-typescript';
+import react from '@vitejs/plugin-react';
 // import babelPluginDecoratorTransforms from 'decorator-transforms';
-import { gracileJsx } from '@gracile-labs/jsx/vite';
+// import { gracileJsx } from '@gracile-labs/jsx/vite';
 
 // import { customElementVuejsPlugin } from 'custom-element-vuejs-integration';
 // import { customElementReactWrapperPlugin } from 'custom-element-react-wrappers';
@@ -52,21 +53,23 @@ export const staticCopy = (mode: string) =>
     ],
   });
 
-export const gracileJsxConfig = gracileJsx({
-  cemPlugin: {
-    files: ['./src/**/*.el.{js,ts,jsx,tsx}'],
-    plugins: [
-      // customElementReactWrapperPlugin({
-      //   modulePath(className, tagName) {
-      //     console.log(className, tagName);
-      //     return `../dist/${tagName.replace('nf-', '')}.el.js`;
-      //   },
-      // }) as any,
-      // customElementVuejsPlugin({
-      //   outdir: './vue',
-      //   fileName: 'my-library-vuejs.d.ts',
-      //   globalTypePath: '../components/index.js', // relative to `outdir`
-      // }) as any,
-    ],
-  },
-});
+// export const gracileJsxConfig = gracileJsx({
+//   cemPlugin: {
+//     files: ['./src/**/*.el.{js,ts,jsx,tsx}'],
+//     plugins: [
+//       // customElementReactWrapperPlugin({
+//       //   modulePath(className, tagName) {
+//       //     console.log(className, tagName);
+//       //     return `../dist/${tagName.replace('nf-', '')}.el.js`;
+//       //   },
+//       // }) as any,
+//       // customElementVuejsPlugin({
+//       //   outdir: './vue',
+//       //   fileName: 'my-library-vuejs.d.ts',
+//       //   globalTypePath: '../components/index.js', // relative to `outdir`
+//       // }) as any,
+//     ],
+//   },
+// });
+
+export const reactConfig = react();

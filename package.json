@@ -13,6 +13,7 @@
     "build": "vite build",
     "build:check": "tsc && vite build",
     "build:lib": "vite build --config vite.config.lib.ts",
+    "build:single": "vite build --config vite.config.single.ts",
     "doc:api": "typedoc --skipErrorChecking",
     "deploy:demo": "netlify deploy -d dist-site",
     "dev": "vite",
