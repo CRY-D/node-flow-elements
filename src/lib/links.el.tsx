@@ -6,7 +6,6 @@ import { classMap } from 'lit/directives/class-map.js';
 import { animate } from '@lit-labs/motion';
 import { ContextConsumer } from '@lit/context';
 import { SignalWatcher } from '@lit-labs/signals';
-import { For } from '@gracile-labs/jsx/components/for';
 
 import { Flow } from './flow.js';
 import type { ConnectingLink, GenericFlow, Link } from './types.js';
@@ -114,28 +113,24 @@ export class NfLinksElement extends SignalWatcher(LitElement) {
               `
             : null}
 
-          <For
-            each={this.#flow.links}
-            key={(link) => `${link.from.id}_${link.to.id}`}
-          >
-            {(link) => {
-              const animation = animate({
-                in: [],
-                out: [{ opacity: 0 }],
-                stabilizeOut: true,
-                properties: ['opacity'],
-                keyframeOptions: { duration: 150 },
-                id: `${link.from.id}_${link.to.id}`,
-                inId: `in_${link.from.id}_${link.to.id}`,
+          {this.#flow.links.map((link) => {
+            const animation = animate({
+              in: [],
+              out: [{ opacity: 0 }],
+              stabilizeOut: true,
+              properties: ['opacity'],
+              keyframeOptions: { duration: 150 },
+              id: `${link.from.id}_${link.to.id}`,
+              inId: `in_${link.from.id}_${link.to.id}`,
 
-                skipInitial: true,
-              });
-              const classes = classMap({
-                paths: true,
-                'is-connecting-port': this.#flow.connectingLink !== null,
-              });
+              skipInitial: true,
+            });
+            const classes = classMap({
+              paths: true,
+              'is-connecting-port': this.#flow.connectingLink !== null,
+            });
 
-              return svg`
+            return svg`
                 <g
                   ${animation}
                   class=${classes}
@@ -149,8 +144,7 @@ export class NfLinksElement extends SignalWatcher(LitElement) {
                   ${this.Cable({ link, type: 'fatty' })}
                 </g>
               `;
-            }}
-          </For>
+          })}
         </svg>
       </div>
     );

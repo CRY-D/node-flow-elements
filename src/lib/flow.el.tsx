@@ -1,7 +1,6 @@
 /* eslint-disable jsdoc/check-tag-names */
 'use html-signal';
 import { css, LitElement } from 'lit';
-import { For } from '@gracile-labs/jsx/components/for';
 import { ContextProvider } from '@lit/context';
 import { SignalWatcher } from '@lit-labs/signals';
 
@@ -66,8 +65,8 @@ export class NfFlowElement extends SignalWatcher(LitElement) {
   }
 
   private readonly Nodes = (): JSX.LitTemplate => (
-    <For each={this.#flow.nodes} key={(node) => node.id}>
-      {(node) => (
+    <>
+      {this.#flow.nodes.map((node) => (
         <nf-node
           class="node"
           prop:node={node}
@@ -81,8 +80,8 @@ export class NfFlowElement extends SignalWatcher(LitElement) {
             {node.Template ? <node.Template /> : null}
           </slot>
         </nf-node>
-      )}
-    </For>
+      ))}
+    </>
   );
 }
 

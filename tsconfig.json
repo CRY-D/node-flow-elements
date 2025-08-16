@@ -23,8 +23,8 @@
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
 
-    "jsx": "preserve",
-    "jsxImportSource": "@gracile-labs/jsx",
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
 
     // "emitDeclarationOnly": true,
     "declaration": true,
